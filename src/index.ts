@@ -19,6 +19,10 @@ class Bank implements IBase {
     this.amount = 33333;
     this.address = "IND";
   }
+
+  public static schema() {
+    return {};
+  }
 }
 
 class Card implements IBase {
