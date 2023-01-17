@@ -5,6 +5,7 @@ interface IBase {
 
 interface IBaseClassBuilder<T extends IBase> {
   new(): T,
+  schema(): object
 }
 
 class Bank implements IBase {
