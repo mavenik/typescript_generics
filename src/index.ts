@@ -20,7 +20,7 @@ class Bank implements IBase {
     this.address = "IND";
   }
 
-  public static schema() {
+  public static schema() : object {
     return {};
   }
 }
@@ -36,19 +36,27 @@ class Card implements IBase {
     this.amount = 44444;
     this.expiry = 20;
   }
+
+  public static schema() : object {
+    return {};
+  }
 }
 
-function invokeBaseOperations(id: string, amount:number, BaseClass:IBaseClassBuilder<IBase>)) : IBase {
-  const baseClassObject:IBase = BaseClass.new();
+const invokeBaseOperations : (id: string,
+                              amount:number,
+                              BaseClass:IBaseClassBuilder<IBase>
+                             ) => IBase = function(id, amount, BaseClass) {
+  const baseClassObject:IBase = new BaseClass();
+  console.log("After constructor: ", baseClassObject);
 
   baseClassObject.id = id;
   baseClassObject.amount = amount;
 
   return baseClassObject;
-}
+};
 
 const bank = invokeBaseOperations("1234", 100000, Bank);
 const card = invokeBaseOperations("ABCD", 300000, Card);
 
-console.log(bank);
-console.log(card);
+console.log("After base operations: ", bank);
+console.log("After base operations: ", card);
