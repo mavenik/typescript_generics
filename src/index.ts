@@ -60,3 +60,7 @@ const card = invokeBaseOperations("ABCD", 300000, Card);
 
 console.log("After base operations: ", bank);
 console.log("After base operations: ", card);
+
+card.expiry = 30;
+
+console.log("After custom expiry: ", card);
