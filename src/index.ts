@@ -42,7 +42,7 @@ class Card implements IBase {
   }
 }
 
-const invokeBaseOperations : (id: string,
+const updateIdAndAmount : (id: string,
                               amount:number,
                               baseClassObject:IBase,
                               BaseClass:IBaseClassBuilder<IBase>
@@ -55,12 +55,12 @@ const invokeBaseOperations : (id: string,
 
 const bank : Bank = new Bank();
 console.log("After constructor: ", bank);
-invokeBaseOperations("1234", 100000, bank, Bank);
+updateIdAndAmount("1234", 100000, bank, Bank);
 console.log("After base operations: ", bank);
 
 const card : Card = new Card();
 console.log("\nAfter constructor: ", card);
-invokeBaseOperations("ABCD", 300000, card, Card);
+updateIdAndAmount("ABCD", 300000, card, Card);
 console.log("After base operations: ", card);
 
 card.expiry = 30;
