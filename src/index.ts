@@ -44,21 +44,23 @@ class Card implements IBase {
 
 const invokeBaseOperations : (id: string,
                               amount:number,
+                              baseClassObject:IBase,
                               BaseClass:IBaseClassBuilder<IBase>
-                             ) => IBase = function(id, amount, BaseClass) {
-  const baseClassObject:IBase = new BaseClass();
-  console.log("After constructor: ", baseClassObject);
-
+                             ) => IBase = function(id, amount, baseClassObject, BaseClass) {
   baseClassObject.id = id;
   baseClassObject.amount = amount;
 
   return baseClassObject;
 };
 
-const bank = invokeBaseOperations("1234", 100000, Bank);
-const card = invokeBaseOperations("ABCD", 300000, Card);
-
+const bank : Bank = new Bank();
+console.log("After constructor: ", bank);
+invokeBaseOperations("1234", 100000, bank, Bank);
 console.log("After base operations: ", bank);
+
+const card : Card = new Card();
+console.log("\nAfter constructor: ", card);
+invokeBaseOperations("ABCD", 300000, card, Card);
 console.log("After base operations: ", card);
 
 card.expiry = 30;
